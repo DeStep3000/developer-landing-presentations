@@ -1,0 +1,41 @@
+[project]
+name = "developer-landing-presentations"
+version = "0.1.0"
+description = "Backend API for a developer landing presentation with AI-assisted contact processing"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "dj-database-url>=3.1.2",
+    "django>=6.0.6",
+    "django-cors-headers>=4.9.0",
+    "djangorestframework>=3.17.1",
+    "drf-spectacular>=0.29.0",
+    "gunicorn>=23.0.0",
+    "openai>=2.14.0",
+    "psycopg[binary]>=3.3.4",
+    "python-dotenv>=1.2.2",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.0",
+    "pytest-django>=4.12.0",
+    "ruff>=0.15.17",
+]
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "config.settings"
+pythonpath = ["app"]
+testpaths = ["app"]
+python_files = ["test_*.py", "tests.py", "tests_*.py"]
+addopts = "-ra"
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["config", "contacts"]
